@@ -93,6 +93,26 @@ $bot->on('all', function($type, $data) use ($bot) {
     $bot->sendMessage(['chat_id'=> $chat_id, 'text'=> "Hey babe, message me  :)", 'reply_to_message_id'=> $msg_id]);
     return;
   }
+
+  $types = [
+    'text',
+    'animation',
+    'audio',
+    'document',
+    'photo',
+    'sticker',
+    'video',
+    'video_note',
+    'voice',
+    'contact',
+    'dice',
+    'game',
+    'poll',
+    'venue',
+    'location'
+  ];
+  
+  if (!in_array($type, $types)) return;
   
   $user_hash = base64_encode(md5($chat_id, true));
   $res = $bot->copyMessage(['chat_id'=> CREATOR, 'from_chat_id'=> $chat_id, 'message_id'=> $msg_id]);
